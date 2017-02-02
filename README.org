@@ -1,0 +1,44 @@
+* Personal configuration
+  This repository contains a (hopefull) self-contained salt configuration for
+  setting up new machines.
+
+  The =salt= folder should be mapped to =/srv/salt=, the =pillar= folder to =/srv/pillar=.
+** Scope
+   The salt files are meant to setup my personal workstations and server.
+** Packages
+*** Productivity
+**** Emacs
+     Setup =Spacemacs= with custom configuration in =.spacemacs=
+     Make sure to install emacs version => 25=.
+**** Git
+     All systems: install git.
+**** I3WM
+     Automatically configure:
+     - [ ] multiple monitors (with resolutions)
+**** Conky
+     Automatically configure:
+     - [ ] Temperature indicator for:
+       - GPU
+       - CPU
+     - [ ] Audio indicator
+     - [ ] Up- & Downstream of network interface (unknown: =if > 2=)
+**** Rofi
+*** Music
+**** Beets
+**** MPD
+     Make =mpd= a system service with music library at =/media/Music=.
+*** Gaming
+**** Steam
+*** Backup
+**** Syncthing
+     Add [[https://syncthing.net/][repository]] and install syncthing.
+     Maybe add peers.
+**** Dropbox
+*** RPG
+**** Maptool
+     Download [[http://www.rptools.net/toolbox/maptool/][maptool]] on desktop machines and move it into =/opt/maptool=.
+     Create a symbolic link to start it.
+**** Pcgen
+*** Virtualization
+**** Playonlinux
+**** Vagrant
