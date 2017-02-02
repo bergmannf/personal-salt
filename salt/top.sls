@@ -10,16 +10,21 @@ base:
     - conky
     - rofi
   'role:backup':
+    - match:grain
     - syncthing
   'role:music-server':
+    - match:grain
     - mpd
     - icecast
     - beets
   'role:music-client':
+    - match:grain
     - gmpc
   'role:games':
+    - match:grain
     - playonlinux
     - steam
   'role:rpg':
+    - match:grain
     - maptool
-    - pcgen                     # 
+    - pcgen
