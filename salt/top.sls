@@ -5,27 +5,25 @@ base:
     - tmux
   # - ssh -> Can probably be part of the user setup using the user formula
   # - gpg
-  'role:desktop':
-    - match:grain
+  'roles:desktop':
+    - match: grain
     - i3wm
-    - conky
-    - rofi
-  'role:backup':
-    - match:grain
+  'roles:backup':
+    - match: grain
     - syncthing
-  'role:music-server':
-    - match:grain
+  'roles:music-server':
+    - match: grain
     - mpd
     - icecast
     - beets
-  'role:music-client':
-    - match:grain
+  'roles:music-client':
+    - match: grain
     - gmpc
-  'role:games':
-    - match:grain
+  'roles:games':
+    - match: grain
     - playonlinux
     - steam
-  'role:rpg':
-    - match:grain
+  'roles:rpg':
+    - match: grain
     - maptool
     - pcgen
