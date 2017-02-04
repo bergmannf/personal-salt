@@ -7,6 +7,7 @@ git.package:
         - git
 
 {% for user, details in pillar.get('users', {}).items() %}
+{% if 'users' in details['groups'] %}
 {{ user }}-gitconfig:
   file.managed:
     - name: /home/{{ user }}/.gitconfig
@@ -20,4 +21,5 @@ git.package:
       - pkg: git.package
     - defaults:
         details: {{ details }}
+{% endif %}
 {% endfor %}

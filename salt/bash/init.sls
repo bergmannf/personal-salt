@@ -7,6 +7,7 @@ bash.package:
         - bash
 
 {% for user, details in pillar.get('users', {}).items() %}
+{% if 'users' in details['groups'] %}
 {{ user }}-bashrc:
   file.managed:
     - name: /home/{{ user }}/.bashrc
@@ -20,9 +21,7 @@ bash.package:
         - pkg: bash.package
     - defaults:
         details: {{ details }}
-{% endfor %}
 
-{% for user, details in pillar.get('users', {}).items() %}
 {{ user }}-profile:
   file.managed:
     - name: /home/{{ user }}/.profile
@@ -36,9 +35,7 @@ bash.package:
         - pkg: bash.package
     - defaults:
         details: {{ details }}
-{% endfor %}
 
-{% for user, details in pillar.get('users', {}).items() %}
 {{ user }}-bashit:
   git.latest:
     - name: https://github.com/Bash-it/bash-it.git
@@ -48,6 +45,7 @@ bash.package:
         - user: {{ user }}
         - pkg: bash.package
         - {{ user }}-bashrc
+{% endif %}
 {% endfor %}
 
 # The bashrc file already contains the enabling code, so this is not needed
