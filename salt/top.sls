@@ -2,6 +2,7 @@ base:
   '*':
     - git
     - bash
+    - tmux
   # - ssh -> Can probably be part of the user setup using the user formula
   # - gpg
   'role:desktop':
