@@ -1,7 +1,7 @@
 include:
   - users
 
-i3 packages:
+desktop packages:
   pkg.installed:
     - pkgs:
       - i3-wm
@@ -11,6 +11,7 @@ i3 packages:
       - compton
       - feh
       - fonts-font-awesome
+      - redshift
       - rofi
       - lm-sensors
 
@@ -19,37 +20,37 @@ i3 packages:
 i3 config:
   file.managed:
     - name: /home/{{ user }}/.i3/config
-    - source: salt://i3wm/files/config
+    - source: salt://desktop/files/config
     - template: jinja
     - makedirs: true
     - user: {{ user }}
     - group: users
     - require:
       - user: {{ user }}
-      - pkg: i3 packages
+      - pkg: desktop packages
 
 conky exec:
   file.managed:
     - name: /home/{{ user }}/.i3/conky
-    - source: salt://i3wm/files/conky
+    - source: salt://desktop/files/conky
     - template: jinja
     - makedirs: true
     - user: {{ user }}
     - group: users
     - require:
       - user: {{ user }}
-      - pkg: i3 packages
+      - pkg: desktop packages
 
 conky config:
   file.managed:
     - name: /home/{{ user }}/.i3/conkyrc
-    - source: salt://i3wm/files/conkyrc
+    - source: salt://desktop/files/conkyrc
     - template: jinja
     - makedirs: true
     - user: {{ user }}
     - group: users
     - require:
       - user: {{ user }}
-      - pkg: i3 packages
+      - pkg: desktop packages
 {% endif %}
 {% endfor %}

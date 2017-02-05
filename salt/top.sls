@@ -7,7 +7,7 @@ base:
   # - gpg
   'roles:desktop':
     - match: grain
-    - i3wm
+    - desktop
   'roles:backup':
     - match: grain
     - syncthing
