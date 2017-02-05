@@ -8,6 +8,8 @@ base:
   'roles:desktop':
     - match: grain
     - desktop
+    - emacs
+    - syncthing
   'roles:backup':
     - match: grain
     - syncthing
