@@ -1,0 +1,4 @@
+directory: /media/Music
+library: /media/Music/library.blb
+
+plugins: badfiles duplicates

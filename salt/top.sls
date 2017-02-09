@@ -16,8 +16,8 @@ base:
   'roles:music-server':
     - match: grain
     - mpd
-    - icecast
     - beets
+    # - icecast
   'roles:music-client':
     - match: grain
     - gmpc
