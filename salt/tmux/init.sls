@@ -8,7 +8,7 @@ tmux.package:
 
 {% for user, details in pillar.get('users', {}).items() %}
 {% if 'users' in details['groups'] %}
-tmux.theme:
+{{ user }}-tmux.theme:
   file.managed:
     - name: /home/{{ user }}/.tmux-theme
     - source: salt://tmux/files/tmux.theme
@@ -19,7 +19,7 @@ tmux.theme:
       - user: {{ user }}
       - pkg: tmux.package
 
-tmux.config:
+{{ user }}-tmux.config:
   file.managed:
     - name: /home/{{ user }}/.tmux.conf
     - source: salt://tmux/files/tmux.conf
@@ -30,6 +30,6 @@ tmux.config:
     - require:
       - user: {{ user }}
       - pkg: tmux.package
-      - file: tmux.theme
+      - file: {{ user }}-tmux.theme
 {% endif %}
 {% endfor %}
