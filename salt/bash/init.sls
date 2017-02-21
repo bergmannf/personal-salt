@@ -48,16 +48,16 @@ bash.package:
 {% endif %}
 {% endfor %}
 
-# The bashrc file already contains the enabling code, so this is not needed
-# {% for user, details in pillar.get('users', {}).items() %}
-# {{ user }}-run-bashit:
-#   cmd.run:
-#     - name: /home/{{ user }}/.bashit/install.sh --silent
-#     - cwd: /home/{{ user }}
-#     - runas: {{ user }}
-#     - shell: /bin/bash
-#     - require:
-#         - user: {{ user }}
-#         - pkg: bash.package
-#         - {{ user }}-bashit
-# {% endfor %}
+{% for user, details in pillar.get('users', {}).items() %}
+{{ user }}-run-bashit:
+  cmd.run:
+    # The bashrc file already contains the enabling code, so no modifications
+    - name: /home/{{ user }}/.bash_it/install.sh --silent --no-modify-config
+    - cwd: /home/{{ user }}
+    - runas: {{ user }}
+    - shell: /bin/bash
+    - require:
+        - user: {{ user }}
+        - pkg: bash.package
+        - {{ user }}-bashit
+{% endfor %}
