@@ -1,23 +1,25 @@
+{% from "desktop/map.jinja" import desktop with context %}
+
 include:
   - users
 
-desktop packages:
+desktop.packages:
   pkg.installed:
     - pkgs:
-      - i3-wm
+      - {{ desktop.i3 }}
       - i3status
       - i3lock
       - conky
       - compton
       - feh
-      - fonts-font-awesome
+      - {{ desktop.font_awesome }}
       - redshift
       - rofi
-      - lm-sensors
+      - {{ desktop.sensors }}
 
 {% for user, details in pillar.get('users').items() %}
 {% if 'users' in details['groups'] %}
-i3 config:
+{{ user }}.i3.config:
   file.managed:
     - name: /home/{{ user }}/.i3/config
     - source: salt://desktop/files/config
@@ -27,9 +29,9 @@ i3 config:
     - group: users
     - require:
       - user: {{ user }}
-      - pkg: desktop packages
+      - pkg: desktop.packages
 
-conky exec:
+{{ user }}.conky.exec:
   file.managed:
     - name: /home/{{ user }}/.i3/conky
     - source: salt://desktop/files/conky
@@ -39,9 +41,9 @@ conky exec:
     - group: users
     - require:
       - user: {{ user }}
-      - pkg: desktop packages
+      - pkg: desktop.packages
 
-conky config:
+{{ user }}.conky.config:
   file.managed:
     - name: /home/{{ user }}/.i3/conkyrc
     - source: salt://desktop/files/conkyrc
@@ -51,6 +53,6 @@ conky config:
     - group: users
     - require:
       - user: {{ user }}
-      - pkg: desktop packages
+      - pkg: desktop.packages
 {% endif %}
 {% endfor %}
