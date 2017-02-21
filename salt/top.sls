@@ -9,6 +9,7 @@ base:
     - match: grain
     - desktop
     - emacs
+    - scala
     - syncthing
   'roles:backup':
     - match: grain
