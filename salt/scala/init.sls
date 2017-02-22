@@ -1,3 +1,5 @@
+{% from "scala/map.jinja" import scala with context %}
+
 sbt.repo:
   {% if grains.get('os') in ["Ubuntu", "Debian"] %}
   pkgrepo.managed:
@@ -9,12 +11,16 @@ sbt.repo:
       - pkg: sbt.package
   {% else %}
   pkgrepo.managed:
-    - humanname: SBT repository
-    - name: https://bintray.com/sbt/rpm/rpm
+    - name: bintray--sbt-rpm
+    - baseurl: http://dl.bintray.com/sbt/rpm
+    - gpgcheck: 0
+    - repo_gpgcheck: 0
+    - require_in:
+      - pkg: sbt.package
   {% endif %}
 
 sbt.package:
   pkg.installed:
     - pkgs:
-        - openjdk-8-jdk
+        - {{ scala.jdk }}
         - sbt
