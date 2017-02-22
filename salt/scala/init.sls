@@ -1,5 +1,8 @@
 {% from "scala/map.jinja" import scala with context %}
 
+include:
+  - users
+
 sbt.repo:
   {% if grains.get('os') in ["Ubuntu", "Debian"] %}
   pkgrepo.managed:
@@ -24,3 +27,25 @@ sbt.package:
     - pkgs:
         - {{ scala.jdk }}
         - sbt
+
+ammonite.repl:
+  file.managed:
+    - name: /usr/local/bin/amm
+    - source: https://git.io/vMF2M
+    - source_hash: md5=07143cdf89e94b0a957f5656193d88d7
+    - user: root
+    - group: root
+    - mode: 0755
+
+{% for user, details in pillar.get('users', {}).items() if 'users' in details['groups'] %}
+{{ user }}.ammonite.config:
+  file.managed:
+    - name: /home/{{ user }}/.ammonite/predef.sc
+    - source: salt://scala/files/ammonite.predef
+    - makedirs: true
+    - user: {{ user }}
+    - group: users
+    - require:
+      - user: {{ user }}
+      - ammonite.repl
+{% endfor %}
