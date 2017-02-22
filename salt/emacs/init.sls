@@ -8,7 +8,7 @@ emacs.package:
 
 {% for user, details in pillar.get('users', {}).items() %}
 {% if 'users' in details['groups'] %}
-spacemacs available:
+{{ user }}.spacemacs.available:
   git.latest:
     - name: https://github.com/syl20bnr/spacemacs
     - target: /home/{{ user }}/.emacs.d
@@ -16,7 +16,7 @@ spacemacs available:
     - require:
       - pkg: emacs.package
 
-spacemacs config:
+{{ user }}.spacemacs.config:
   file.managed:
     - name: /home/{{ user }}/.spacemacs
     - source: salt://emacs/files/spacemacs
