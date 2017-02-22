@@ -131,7 +131,7 @@ bind "set completion-ignore-case On"
 alias ibs="osc --apiurl='https://api.suse.de' $*"
 
 # Path to the bash it configuration
-export BASH_IT="/home/florian/.bash_it"
+export BASH_IT="$HOME/.bash_it"
 
 # Lock and Load a custom theme file
 # location /.bash_it/themes/
