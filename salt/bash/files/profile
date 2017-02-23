@@ -30,3 +30,5 @@ for P in "${PATHS[@]}"; do
         export PATH
     fi
 done
+
+export TERMINAL='{{ salt.piller.get("terminal", "xfce4-terminal" }}'
