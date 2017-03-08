@@ -218,7 +218,7 @@ exec xrandr {% for id, monitor in salt.pillar.get("monitors", {}).items() %}
      {% if monitor.get('dpi', None) %} --dpi {{ monitor['dpi'] }} {% endif %}
      {% if monitor.get('orientation', None) %} {{ monitor['orientation'] }} {{ monitor['orientation_target'] }} {% endif %}
      {% endfor %}
-exec setxkbmap -layout us,de -option grp:alt_shift_toggle,ctrl:nocaps
+exec setxkbmap -layout us,de -option grp:alt_space_toggle,ctrl:nocaps
 exec compton -CGb
 exec xscreensaver
 exec feh --bg-scale "$HOME/Pictures/Wallpapers/38 - Wf2C58G.jpg"
