@@ -119,6 +119,7 @@ fi
 VIRTUALENVWRAPPER_SH="$HOME/.local/bin/virtualenvwrapper.sh"
 if [[ -f "$VIRTUALENVWRAPPER_SH" ]]; then
     export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
+    export VIRTUALENVWRAPPER_VIRTUALENV="pyvenv"
     source "$VIRTUALENVWRAPPER_SH"
 fi
 
