@@ -22,6 +22,11 @@ sbt.repo:
       - pkg: sbt.package
   {% endif %}
 
+scala.package:
+  pkg.installed:
+    - sources:
+        - scala: {{ scala.pkg_url }}
+
 sbt.package:
   pkg.installed:
     - pkgs:
@@ -32,7 +37,7 @@ ammonite.repl:
   file.managed:
     - name: /usr/local/bin/amm
     - source: https://git.io/vMF2M
-    - source_hash: md5=07143cdf89e94b0a957f5656193d88d7
+    - source_hash: sha256=4084101271944253d0528587d437e9f15c2661c3289b50bb69925a3077c3fc39
     - user: root
     - group: root
     - mode: 0755
@@ -48,4 +53,9 @@ ammonite.repl:
     - require:
       - user: {{ user }}
       - ammonite.repl
+
+{{ user }}.scala.home:
+  file.append:
+    - name: /home/{{ user }}/.bash_rc
+    - text: export SCALA_HOME={{ scala.home }}
 {% endfor %}

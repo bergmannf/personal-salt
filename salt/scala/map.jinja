@@ -1,8 +1,17 @@
 {% set scala = salt['grains.filter_by']({
    'Debian': {
        'jdk': 'openjdk-8-jdk',
+       'pkg_url': 'http://downloads.lightbend.com/scala/2.12.1/scala-2.12.1.deb',
+       'home': '/usr/local/share/scala/',
    },
    'Suse': {
        'jdk': 'java-1_8_0-openjdk',
+       'pkg_url': 'http://downloads.lightbend.com/scala/2.12.1/scala-2.12.1.rpm',
+       'home': '/usr/local/share/scala/',
    },
+   'Fedora': {
+       'jdk': 'java-1.8.0-openjdk',
+       'pkg_url': 'http://downloads.lightbend.com/scala/2.12.1/scala-2.12.1.rpm',
+       'home': '/usr/local/share/scala/',
+   }
    }, merge=salt['pillar.get']('scala:lookup')) %}
