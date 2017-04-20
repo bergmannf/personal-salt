@@ -54,6 +54,14 @@ ammonite.repl:
       - user: {{ user }}
       - ammonite.repl
 
+{{ user }}.sbt.plugins:
+  file.managed:
+    - name: /home/{{ user }}/.sbt/0.13/plugins.sbt
+    - text: addSbtPlugin("org.ensime" % "sbt-ensime" % "1.12.9")
+    - require:
+      - user: {{ user }}
+      - sbt.package
+
 {{ user }}.scala.home:
   file.append:
     - name: /home/{{ user }}/.bash_rc
