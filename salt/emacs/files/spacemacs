@@ -55,7 +55,8 @@ values."
      html
      javascript
      python
-     salt
+     (scala :variables ensime-startup-notification nil
+            ensime-startup-snapshot-notification nil)
      scala
      yaml
      )
