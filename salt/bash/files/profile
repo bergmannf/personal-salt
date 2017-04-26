@@ -39,4 +39,5 @@ fi
 export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
 ssh-add -l > /dev/null || ssh-add
 
+export TERM="xterm-256color"
 export TERMINAL='{{ salt.piller.get("terminal", "xfce4-terminal" }}'
